@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontendapp
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mernecomjs
+
+  backend:
+    build: ./backend
+    container_name: backendapp
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URI=mongodb+srv://mern-ecom:mern-ecom@mern.3bwgvtn.mongodb.net/my_store_data?retryWrites=true&w=majority
+      - NODE_ENV=production
+    # depends_on:
+    #   - database
+    networks:
+      - mernecomjs
+    
+
+  #database:
+    #image: mongo
+    #container_name: appdatabase
+    #ports:
+      #- "27917:27017"
+    #networks:
+      #- mernecomjs
+    #volumes:
+      #- my_app:/data/db
+
+networks:
+    mernecomjs:
+      driver: bridge
+
+# volumes:
+#   my_app:
+#     driver: local

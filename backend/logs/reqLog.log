@@ -1,0 +1,12 @@
+20230123	11:36:06	f93a2aa1-7fd5-48e5-8030-ce5f6549ac0d	GET	/api/home	undefined
+20230123	11:36:06	44f27484-50e8-4700-b225-e8d959d58c4b	GET	/api/home	undefined
+20230123	11:36:19	fd9eb36e-df83-4fda-9394-79275fc2f577	GET	/api/home	undefined
+20230123	11:36:21	1f73b133-fabc-4dcb-9679-dc8cd1f28f47	GET	/api/home	http://localhost:3000
+20230123	11:36:21	bef61821-7f77-4ce5-8e22-77b54f3930c4	GET	/api/home	http://localhost:3000
+20230123	11:43:32	cfd21aaf-f0c4-412b-9c57-d0ed0def1d01	GET	/users/home	http://localhost:3000
+20230123	11:43:52	5ab3566f-b113-40c9-8c59-137525786d46	GET	/users/home	http://localhost:3000
+20230123	11:44:03	57b9d609-140e-4578-827b-df5ebbd94207	GET	/users/home	undefined
+20230123	11:44:05	1101c713-41ed-4617-aacf-f1e6c6a0507e	GET	/users/home	http://localhost:3000
+20230123	11:44:08	49d9d9e2-dba1-45ac-b9cd-edb762484909	GET	/users/home	undefined
+20230123	11:44:10	e805cd9b-6a94-469f-b3ed-384c916b344c	GET	/users/home	http://localhost:3000
+20230123	11:44:30	ba4d9217-3ae2-4ee3-bff5-f28ee842d0d3	GET	/users/home	http://localhost:3000
