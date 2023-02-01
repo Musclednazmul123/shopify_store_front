@@ -21,6 +21,8 @@ services:
     environment:
       - DATABASE_URI=mongodb+srv://mern-ecom:mern-ecom@mern.3bwgvtn.mongodb.net/my_store_data?retryWrites=true&w=majority
       - NODE_ENV=production
+      - API_ACCESS_TOKEN=4d2013a7927f3a778f36bfed6b38d79b
+      - SHOP=my-store-dev-01.myshopify.com
     # depends_on:
     #   - database
     networks:
