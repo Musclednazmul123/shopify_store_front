@@ -35,7 +35,7 @@ async function useAppQuery(query){
         const data = await storefrontClient.query({
             data: query,
           });
-        return data
+        return data.body.data
     } catch (error){
         return error
     }

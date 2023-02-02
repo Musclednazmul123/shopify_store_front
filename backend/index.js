@@ -10,7 +10,7 @@ const corsoptions = require('./config/corsOptions.js')
 const PORT = process.env.PORT || 5000
 const connectDB = require('./config/dbConn.js')
 const mongoose = require('mongoose')
-const {useAppQuery} = require('./config/storeApi.js')
+
 
 
 connectDB()
@@ -24,24 +24,10 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-const product = `{
-    products (first: 3) {
-      edges {
-        node {
-          id
-          title
-        }
-      }
-    }
-  }`
-
-  useAppQuery(product).then((data)=>{
-    console.log(data)
-  }).catch((err)=>console.log(err))
- 
 
 app.use('/', require('./routes/root'))
 app.use('/users', require('./routes/userRoutes'))
+app.use('/product', require('./routes/productRoutes'))
 
 app.all('*', (req,res)=>{
     res.status(404)
