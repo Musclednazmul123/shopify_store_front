@@ -8,3 +8,4 @@ frontend/.env
 frontend/.git
 frontend/.gitignore
 .vscode
+test.js
