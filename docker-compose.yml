@@ -26,7 +26,7 @@ services:
       - API_KEY=f419e978487420d521b96a5f225550ee
       - API_SECRET_KEY=2f74d88b7a239b1b12f3327eee4fffc0
       - SCOPES=["unauthenticated_write_checkouts", "unauthenticated_read_checkouts", "unauthenticated_read_content", "unauthenticated_write_customers", "unauthenticated_read_customers", "unauthenticated_read_customer_tags", "unauthenticated_read_product_listings", "unauthenticated_read_product_inventory", "unauthenticated_read_product_pickup_locations", "unauthenticated_read_product_tags", "unauthenticated_read_selling_plans", "unauthenticated_write_bulk_operations", "unauthenticated_read_bulk_operations"]
-      - HOST_NAME= https://c064-103-129-208-34.in.ngrok.io
+      - HOST_NAME= https://83a7-103-129-208-34.in.ngrok.io
 
     networks:
       - mernecomjs
