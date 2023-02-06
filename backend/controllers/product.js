@@ -1,12 +1,19 @@
 const {useAppQuery} = require('../config/storeApi.js')
 const {allProduct} = require('../config/storefrontApiQuery.js')
 
-const all_prodict=(req, res)=>useAppQuery(allProduct(2, "eyJsYXN0X2lkIjo4MDQ0NzcxNTA4NTMzLCJsYXN0X3ZhbHVlIjo4MDQ0NzcxNTA4NTMzfQ==", "next" )).then((data)=>{
-    console.log(data)
-    res.send(data)
-}).catch((err)=>{
-    console.log(err)
-    res.send(err)
-})
+const all_prodict=(req, res)=>{
+
+    if (!req.body.limit){
+        return res.status(404).send({message:"limit is not define in request body"}) 
+    }
+    
+    useAppQuery(allProduct(req.body.limit, req.body.cursor || null, req.body.page || null )).then((data)=>{
+        return res.send({body:data.products})
+    }).catch((err)=>{
+        console.log(err)
+        return res.send(err)
+    })
+}
+
 
 module.exports = {all_prodict}

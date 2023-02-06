@@ -3,3 +3,21 @@
 20230203	17:44:53	39c7de71-b0b5-45b9-af36-13cbdc1f4f1a	ReferenceError:cursor is not defined	GET	/product	undefined
 20230203	17:44:56	d2f51204-d977-49d1-80ea-f7857023a73b	ReferenceError:cursor is not defined	GET	/product	undefined
 20230203	17:45:16	f28edebd-e2c9-4aac-89c8-af00a22b9b42	ReferenceError:cursor is not defined	GET	/product	undefined
+20230206	03:57:37	d9a36973-18e2-4318-8b96-ce70b58f5833	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	03:57:38	2bf6cd3e-c322-46ce-8205-f9926d6b5b89	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	03:57:50	2ff5cf57-d60d-4ec9-bdbe-5dfa5e255b96	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	undefined
+20230206	03:57:53	f060aa08-be5e-4ade-a2ce-d9b689f3440a	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	03:57:53	744a6a06-7d80-4028-a94c-a4f91fff4f74	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:02:59	84ffdd39-a0e6-48e4-953c-a797e9a04f27	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:02:59	c9d98950-a2ec-46b4-950d-795e8a6896e8	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:03:02	3f4d87b9-f6bc-4a86-a08b-9b448cceaca0	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	undefined
+20230206	04:03:04	de35b986-fa5e-484b-b919-b822fa77c84e	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:03:04	c8d18dd5-b8cf-4e6a-b1ae-fc205f9ed2b8	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:04:18	e8be939b-4871-48a6-8a34-ab938e48c78e	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	undefined
+20230206	04:04:20	fbf88151-e402-4ca3-bcdc-630f7af3c46d	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:04:20	a82d41e7-4c28-409c-99b8-0d481478070f	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:08:09	66b6d8e2-d95a-4c72-b50f-18f79712da1b	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:08:09	eba7623b-1e4c-44ba-872d-43464e75907c	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:08:20	d04539d0-f490-40b3-ae33-3518902e728a	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	undefined
+20230206	04:08:23	2a762f18-91bc-44c5-9ab3-6bd58f3450f0	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230206	04:08:23	8630cc47-8688-4b55-b251-8215e7748616	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000

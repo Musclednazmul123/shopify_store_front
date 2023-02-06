@@ -5,7 +5,7 @@ require('@shopify/shopify-api/adapters/node')
 // Use client.query and pass your query as `data`
 async function useAppQuery(query){
     // Load the access token
-    console.log(query)
+    // console.log(query)
     const storefrontAccessToken = process.env.API_ACCESS_TOKEN || undefined;
     // Shop from which we're fetching data
     const shop = process.env.SHOP || undefined;
