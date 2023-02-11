@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = "https://a2d4-119-30-38-236.ap.ngrok.io"
+const baseurl = "https://31cf-103-129-208-37.in.ngrok.io"
 
 export const fetchdata = async(url, query)=>{
     const type = typeof(query)
@@ -9,9 +9,14 @@ export const fetchdata = async(url, query)=>{
     }
     try {
         const data = await axios.post(`${baseurl}${url}`, query)
-        return data.data
+        console.log(data)
+        if (data){
+            return data.data
+        } else {
+            return data
+        }
+        
     } catch(error) {
-        console.log(error);
         console.log('error ocured')
         return error
     };

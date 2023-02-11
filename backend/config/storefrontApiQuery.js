@@ -32,5 +32,20 @@ const allProduct = (total, cursor, page)=>{
   }`
 }
 
+const oneProduct = (id)=>{
+  if (id){
+    id = id.replace("gid://shopify/Product/","")
+    
+  } else{
+    return null
+  }
 
-module.exports = {allProduct}
+  return `{
+    product(id: "gid:\/\/shopify\/Product\/${id}") {
+      title
+    }
+  }`
+}
+
+
+module.exports = {allProduct, oneProduct}
