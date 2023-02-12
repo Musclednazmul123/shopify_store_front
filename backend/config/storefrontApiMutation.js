@@ -50,5 +50,48 @@ const addCart =(items)=>{
       
 }
 
+const cartUpdateItemsMutation =(id, lines)=>{
+  return `mutation {
+    cartLinesUpdate(cartId: "gid:\/\/shopify\/Cart\/${id}", lines: ${lines}) {
+      cart {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }`
+}
 
-module.exports = {addCart}
+
+const cartAddItemsMutation = (id, lines)=>{
+  return `mutation {
+    cartLinesAdd(cartId: "gid:\/\/shopify\/Cart\/${id}", lines: ${lines}) {
+      cart {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }`
+}
+
+const cartRemoveItemsMutation=(id, lineIds)=>{
+
+  return `mutation {
+    cartLinesRemove(cartId: "gid:\/\/shopify\/Cart\/${id}", lineIds: ${lineIds}) {
+      cart {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }`
+}
+
+module.exports = {addCart, cartAddItemsMutation, cartUpdateItemsMutation, cartRemoveItemsMutation}

@@ -63,7 +63,7 @@ const cart = (id, total, cursor, page)=>{
     pageoption =  `${page}:"${cursor}"`
   }
   return `{
-    cart(id: "gid:\/\/shopify\/Cart\/${id}", ) {
+    cart(id: "gid:\/\/shopify\/Cart\/${id}" ) {
       id
       createdAt
       updatedAt
@@ -75,8 +75,10 @@ const cart = (id, total, cursor, page)=>{
             merchandise {
               ... on ProductVariant {
                 id
+                
               }
             }
+            quantity
           }
         }
         pageInfo{
