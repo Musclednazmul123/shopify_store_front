@@ -7,7 +7,7 @@ const all_product=(req, res)=>{
         return res.status(404).send({message:"limit is not define in request body"}) 
     }
     
-    useAppQuery(allProduct(req.body.limit, req.body.cursor || null, req.body.page || null )).then((data)=>{
+    useAppQuery(allProduct(req.body.limit || 10, req.body.cursor || null, req.body.page || null )).then((data)=>{
         if(data.products){
             return res.send({ok:true, body:data.products})
         } else{

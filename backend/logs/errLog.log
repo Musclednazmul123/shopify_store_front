@@ -21,3 +21,4 @@
 20230206	04:08:20	d04539d0-f490-40b3-ae33-3518902e728a	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	undefined
 20230206	04:08:23	2a762f18-91bc-44c5-9ab3-6bd58f3450f0	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
 20230206	04:08:23	8630cc47-8688-4b55-b251-8215e7748616	SyntaxError:Unexpected token " in JSON at position 0	POST	/product	http://localhost:3000
+20230212	00:17:46	e49216e3-8d83-4c3d-a15e-14a534b3ebe7	ReferenceError:addToCart is not defined	GET	/cart/add	undefined
