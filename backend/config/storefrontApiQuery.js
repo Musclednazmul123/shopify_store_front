@@ -1,27 +1,13 @@
-const allProduct = (total, cursor, page)=>{
+const allProduct = (queryOption)=>{
   
-  let pageoption = ""
-  let option='first'
-  if (cursor){
-    if (page=='next'){
-      option='first'
-      page = "after"
-    } else if(page=='previous'){
-      option='last'
-      page = "before"
-    } else{
-      return null
-    }
-    pageoption =  `${page}:"${cursor}"`
-  }
-
   return `{
-    products (${option}: ${total}, ${pageoption}) {
+    products (${queryOption}) {
       edges {
         cursor
         node {
           id
           title
+          handle
         }
       }
       pageInfo{
@@ -32,16 +18,10 @@ const allProduct = (total, cursor, page)=>{
   }`
 }
 
-const oneProduct = (id)=>{
-  if (id){
-    id = id.replace("gid://shopify/Product/","")
-    
-  } else{
-    return null
-  }
+const oneProduct = (handle, queryOption)=>{
 
   return `{
-    product(id: "gid:\/\/shopify\/Product\/${id}") {
+    product(handle:${handle}) {
       title
     }
   }`

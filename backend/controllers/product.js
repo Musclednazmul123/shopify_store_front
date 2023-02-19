@@ -1,44 +1,55 @@
 const {useAppQuery} = require('../config/storeApi.js')
 const {allProduct, oneProduct} = require('../config/storefrontApiQuery.js')
 
-const all_product=(req, res)=>{
+const all_product= async(req, res)=>{
 
-    if (!req.body.limit){
-        return res.status(404).send({message:"limit is not define in request body"}) 
-    }
-    
-    useAppQuery(allProduct(req.body.limit || 10, req.body.cursor || null, req.body.page || null )).then((data)=>{
-        if(data.products){
-            return res.send({ok:true, body:data.products})
-        } else{
-            return res.status(404).send({message:"404 Not found"})
-        }
+    let status = 200;
+    let error = null;
+    let data=null
+
+    console.log(req)
+    try {
+        let limit = "first"
+        if(req.body.page == 'before'){
+        limit = "last"
+        } 
+        let queryOption=`${limit}:2,${req.body.page}:"${req.body.cursor}", reverse: true,`
+        queryOption=queryOption.replace('undefined:"undefined",', "")
+        queryOption=queryOption.replace('null:"null",', "")
         
-    }).catch((err)=>{
-        console.log(err)
-        return res.send(err)
-    })
+        data = await useAppQuery(allProduct(queryOption));
+        
+    } catch (e) {
+        console.log(`Failed to process products/create: ${e.message}`);
+        status = 500;
+        error = e.message;
+    }
+    return res.status(status).send({ success: status === 200, response: data, error });
 }
 
-const one_product=(req, res)=>{
+const one_product= async(req, res)=>{
+    let status = 200;
+    let error = null;
+    let data=null
+    let handle = `"${req.params.handle}"`
 
-    if (!req.body.limit){
-        return res.status(404).send({message:"limit is not define in request body"}) 
+    try {
+        let limit = "first"
+        if(req.body.page == 'before'){
+        limit = "last"
+        } 
+        let queryOption=`${limit}:20,${req.body.page}:"${req.body.cursor}", reverse: true,`
+        queryOption=queryOption.replace('undefined:"undefined",', "")
+        queryOption=queryOption.replace('null:"null",', "")
+        
+        data = await useAppQuery(oneProduct(handle, queryOption));
+        
+    } catch (e) {
+        console.log(`Failed to process products/create: ${e.message}`);
+        status = 500;
+        error = e.message;
     }
-    
-    useAppQuery(oneProduct(req.params.id)).then((data)=>{
-        
-        if(data.product){
-            
-            return res.send({ok:true, body:data.product})
-        } else{
-            console.log(data)
-            return res.status(404).send({message:"404 Not found"})
-        }
-        
-    }).catch((err)=>{
-        return res.status(5000).send({message:"Internal server error"})
-    })
+    return res.status(status).send({ success: status === 200, response: data, error });
 }
 
 module.exports = {all_product, one_product}

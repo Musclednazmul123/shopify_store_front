@@ -94,4 +94,7 @@ const cartRemoveItemsMutation=(id, lineIds)=>{
   }`
 }
 
-module.exports = {addCart, cartAddItemsMutation, cartUpdateItemsMutation, cartRemoveItemsMutation}
+const createCheckoutMutation=()=>{
+  return``
+}
+module.exports = {addCart, cartAddItemsMutation, cartUpdateItemsMutation, cartRemoveItemsMutation, createCheckoutMutation}

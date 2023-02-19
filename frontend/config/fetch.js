@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = "https://31cf-103-129-208-37.in.ngrok.io"
+const baseurl = "https://2234-103-129-208-35.in.ngrok.io"
 
 export const fetchdata = async(url, query)=>{
     const type = typeof(query)
@@ -9,9 +9,9 @@ export const fetchdata = async(url, query)=>{
     }
     try {
         const data = await axios.post(`${baseurl}${url}`, query)
-        console.log(data)
         if (data){
-            return data.data
+            // console.log(data)
+            return data.data.response
         } else {
             return data
         }
