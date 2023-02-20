@@ -4,7 +4,6 @@ export const Breadcrumbs = ()=>{
     const {asPath}= useRouter()
     let routes = asPath.split("/")
     routes = routes.filter((str) => str !== '');
-    console.log(routes)
 
     return <div>
         {/* Breadcrumbs */}

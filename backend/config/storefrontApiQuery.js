@@ -22,7 +22,17 @@ const oneProduct = (handle, queryOption)=>{
 
   return `{
     product(handle:${handle}) {
+      id
       title
+      variants(first: 250) {
+        nodes {
+          id
+          price {
+            amount
+            currencyCode
+          }
+        }
+      }
     }
   }`
 }
