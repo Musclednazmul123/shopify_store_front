@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = "https://2234-103-129-208-35.in.ngrok.io"
+const baseurl = process.env.NEXT_PUBLIC_STORE_API || "localhost:5000"
 
 export const fetchdata = async(url, query)=>{
     const type = typeof(query)

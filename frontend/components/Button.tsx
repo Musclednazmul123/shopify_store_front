@@ -1,14 +1,11 @@
 
-interface Props {
-    title?: string;
-    action?: () => void;
-  }
+import {ButtonProps} from '@/types'
+import { BurgerIcon } from './Icons'
 
-export const Button =({title, action}:Props)=>{
+export const Button =({title, action, children}:ButtonProps)=>{
 
     return <>
-    
-        <button onClick={action} >{title}</button>
+        <button onClick={action} >{children? children: title}</button>
     
     </>
 }
@@ -23,8 +20,15 @@ export const LoadingButton =()=>{
     </button>
 }
 
-export const AddToCartButton=({action}:Props)=>{
+export const AddToCartButton=({action}:ButtonProps)=>{
     return <button onClick={action} type="button" className="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
     Add to Cart
 </button>
+}
+
+export const BurgerButton=({action}:ButtonProps)=>{
+    return <button onClick={action} type="button" data-collapse-toggle="mobile-menu-2" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+        <span className="sr-only">Open main menu</span>
+        <BurgerIcon />
+    </button>
 }

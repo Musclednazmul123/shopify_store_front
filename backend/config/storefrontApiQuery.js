@@ -8,6 +8,21 @@ const allProduct = (queryOption)=>{
           id
           title
           handle
+          variants(first: 1) {
+            nodes {
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                transformedSrc(preferredContentType: WEBP)
+              }
+            }
+          }
         }
       }
       pageInfo{
