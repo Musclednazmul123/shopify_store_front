@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = "https://a2d4-119-30-38-236.ap.ngrok.io"
+const baseurl = process.env.NEXT_PUBLIC_STORE_API || "localhost:5000"
 
 export const fetchdata = async(url, query)=>{
     const type = typeof(query)
@@ -9,9 +9,14 @@ export const fetchdata = async(url, query)=>{
     }
     try {
         const data = await axios.post(`${baseurl}${url}`, query)
-        return data.data
+        if (data){
+            // console.log(data)
+            return data.data.response
+        } else {
+            return data
+        }
+        
     } catch(error) {
-        console.log(error);
         console.log('error ocured')
         return error
     };

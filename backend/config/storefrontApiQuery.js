@@ -1,5 +1,58 @@
-const allProduct = (total, cursor, page)=>{
+const allProduct = (queryOption)=>{
   
+  return `{
+    products (${queryOption}) {
+      edges {
+        cursor
+        node {
+          id
+          title
+          handle
+          variants(first: 1) {
+            nodes {
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                transformedSrc(preferredContentType: WEBP)
+              }
+            }
+          }
+        }
+      }
+      pageInfo{
+        hasNextPage
+        hasPreviousPage
+      }
+    }
+  }`
+}
+
+const oneProduct = (handle, queryOption)=>{
+
+  return `{
+    product(handle:${handle}) {
+      id
+      title
+      variants(first: 250) {
+        nodes {
+          id
+          price {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }`
+}
+
+const cart = (id, total, cursor, page)=>{
   let pageoption = ""
   let option='first'
   if (cursor){
@@ -14,23 +67,32 @@ const allProduct = (total, cursor, page)=>{
     }
     pageoption =  `${page}:"${cursor}"`
   }
-
   return `{
-    products (${option}: ${total}, ${pageoption}) {
-      edges {
-        cursor
-        node {
-          id
-          title
+    cart(id: "gid:\/\/shopify\/Cart\/${id}" ) {
+      id
+      createdAt
+      updatedAt
+      lines(${option}: ${total}, ${pageoption}) {
+        edges {
+          cursor
+          node {
+            id
+            merchandise {
+              ... on ProductVariant {
+                id
+                
+              }
+            }
+            quantity
+          }
         }
-      }
-      pageInfo{
-        hasNextPage
-        hasPreviousPage
+        pageInfo{
+          hasNextPage
+          hasPreviousPage
+        }
       }
     }
   }`
 }
 
-
-module.exports = {allProduct}
+module.exports = {allProduct, oneProduct, cart}

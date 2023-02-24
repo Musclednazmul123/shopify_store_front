@@ -1,8 +1,9 @@
 const express =require('express')
 
 const router = express.Router()
-const {all_prodict} = require('../controllers/product.js')
+const {all_product, one_product} = require('../controllers/product.js')
 
-router.route('/').post((req, res)=>all_prodict(req, res))
+router.route('/').get((req, res)=>all_product(req, res))
+router.route('/:handle').post((req, res)=>one_product(req, res))
 
 module.exports = router

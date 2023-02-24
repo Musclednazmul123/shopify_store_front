@@ -38,6 +38,7 @@ async function useAppQuery(query){
           });
         return data.body.data
     } catch (error){
+        console.log(error.response.errors)
         return error
     }
 }
