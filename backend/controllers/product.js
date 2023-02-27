@@ -1,5 +1,5 @@
-const {useAppQuery} = require('../config/storeApi.js')
-const {allProduct, oneProduct} = require('../config/storefrontApiQuery.js')
+const {useAppQuery} = require('../config/storeApi')
+const {allProduct, oneProduct} = require('../graphql/storefrontApiQuery')
 
 const all_product= async(req, res)=>{
 
@@ -15,7 +15,7 @@ const all_product= async(req, res)=>{
         
         data = await useAppQuery(allProduct(queryOption));
     } catch (e) {
-        console.log(`Failed to process products/create: ${e.message}`);
+        console.log(`Failed to process products/detall: ${e.message}`);
         status = 500;
         error = e.message;
     }
@@ -30,10 +30,10 @@ const one_product= async(req, res)=>{
 
     try {
         let limit = "first"
-        if(req.body.page == 'before'){
-        limit = "last"
+        if(req.query.page !='null' && req.query.page.split(':')[0] == 'before'){
+            limit = "last"
         } 
-        let queryOption=`${limit}:20,${req.body.page}:"${req.body.cursor}", reverse: true,`
+        let queryOption=`${limit}:20, reverse: true, ${req.query.page !='null' ? req.query.page :""}`
         
         data = await useAppQuery(oneProduct(handle, queryOption));
         

@@ -1,6 +1,11 @@
 import {IconsProps} from '@/types'
 
-export const IconCart=()=>{
+interface IconCart{
+    id:string | null
+    total: number | string | null
+}
+
+export const IconCart=({id, total}:IconCart)=>{
     return (
         <div className="relative py-2">
             <div className="t-0 absolute left-3">
@@ -40,7 +45,7 @@ export const Paginate=({next, is_active}:IconsProps)=>{
 
     return<>
         {next?
-        <svg className={`h-8 w-8 ${is_active?'text-red-500':"text-gray-300"}`}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  strokeLinecap="round"  strokeLinejoin="round">  <polyline points="9 18 15 12 9 6" /></svg>
+        <svg className={`h-8 w-8 ${is_active?'text-red-500':"text-gray-300"}`}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round">  <polyline points="9 18 15 12 9 6" /></svg>
         :
         <svg className={`h-8 w-8 ${is_active?'text-red-500':"text-gray-300"}`}  fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>

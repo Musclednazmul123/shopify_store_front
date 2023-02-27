@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from '@reduxjs/toolkit/query'
-import{productsApi} from "./slice/productsSlice"
+import{shopifyApi} from "../slice/shopifySlice"
 
 export const store = configureStore({
     reducer: {
-        [productsApi.reducerPath]:productsApi.reducer
+        [shopifyApi.reducerPath]:shopifyApi.reducer
     },
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(productsApi.middleware),
+    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(shopifyApi.middleware),
 })
 
 setupListeners(store.dispatch)

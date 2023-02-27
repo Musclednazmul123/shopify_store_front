@@ -1,40 +1,40 @@
-import { useState } from 'react'
-import {fetchdata} from '../config/fetch.js'
+import { usePostShopifyMutation } from '@/slice/shopifySlice'
+import { ProductDetailsType } from '@/types'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { AddToCartButton, LoadingButton } from './Button'
 import { IconDropDown } from './Icons'
 import {ProductDetailsPrice} from './Prices'
 
-interface Props{
-    id: String
-    amount?:String
-    currency?:String
-    description?:String
-    title:String
-    variants?: any
-}
-export const ProductDetails=({id, variants, amount, currency, description, title }:Props)=>{
-    console.log(variants)
+
+export const ProductDetails=({id, variants, amount, currency, description, title }:ProductDetailsType)=>{
+
     const [quantity, setQuantity] = useState<String>("1")
-    const [loading, setLoading]=useState<Boolean>(false)
-    const handleAddToCart = ()=>{
-        if (!id){
-            return
-        }
-        // add to cart api requires variant id and the quantity
-        setLoading(true)
-        fetchdata(`/product/cart/add`, {
-        variantid:`${id}`,
-        quantity: quantity,
-        }).then((data)=>{
-        if(data){
-            // set cart id to local storage
-            
-        } else {
-            
-        }
-        setLoading(false)
-        })
+
+    const [postShopify, {isLoading: loading, data, isError, isSuccess}] = usePostShopifyMutation()
+
+    let cartId: string | null = null
+    if ((typeof window !== 'undefined')){
+        cartId = localStorage.getItem("cart")
     }
+    const handleAddToCart = ()=>{
+        const body = {
+            
+            quantity:quantity,
+            variant_id:"gid://shopify/ProductVariant/44107811389749"
+        }
+        postShopify({"url":"/cart/add", body })
+       
+    }
+    
+
+    useEffect(() => {
+        if(isSuccess){
+            toast.success(`Added to cart: ${title}`)
+            localStorage.setItem("cart", data?.cart?.id)
+        }
+    }, [data?.cart?.updatedAt])
+    
     return <>
     <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{title}</h2>
     <p className="text-gray-500 text-sm">By <a href="#" className="text-indigo-600 hover:underline">ABC Company</a></p>
