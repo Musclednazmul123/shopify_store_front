@@ -10,7 +10,7 @@ export const Header =()=>{
     const [cartId, setCartId] = useState<string | null>(null)
 
     useEffect(() => {
-        setCartId(localStorage.getItem("cart") || null)
+        setCartId(localStorage.getItem('cart')?.replace("gid://shopify/Cart/","") || null)
     }, [])
     
     return <div>
@@ -20,7 +20,7 @@ export const Header =()=>{
                     <SiteLogo source='https://flowbite.com/docs/images/logo.svg' />
                     <div className="flex items-center lg:order-2">
                         <Link href="/cart">
-                            <IconCart id={cartId} total={0} /> 
+                            <IconCart id={cartId} /> 
                         </Link>
                         <BurgerButton />
                     </div>

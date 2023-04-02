@@ -29,20 +29,33 @@ const addToCart = async(req, res)=>{
   let status = 200;
   let error = null;
   let data=null
-  const id = req.body.cart_id || null
+  const id = req.body.id || null
   try{
     
     const input = `{
       lines: [
         {
-          quantity: ${req.body.quantity},
+          quantity: ${req.body.quantity*1 || 1},
           merchandiseId: "${req.body.variant_id}"
         }
       ]
     }`
-    if(id){
-      const mycart = await useAppQuery(cart(id, "first:1"))
-      console.log(mycart)
+    if(id && id != 'null'){
+      const mycart = await useAppQuery(cart(`"${id}"`, "first:1"))
+      if(mycart.cart){
+        const lines = `
+          cartId:"${id}",
+          lines: [
+            {
+              quantity: ${req.body.quantity*1 || 1},
+              merchandiseId: "${req.body.variant_id}"
+            }
+          ]`
+        data = await useAppQuery(cartAddItemsMutation(lines))
+        
+      } else{
+        data = await useAppQuery(addCart(input))
+      }
     } else{
       data = await useAppQuery(addCart(input))
     }
@@ -53,6 +66,8 @@ const addToCart = async(req, res)=>{
     status = 500;
     error = e.message;
   }
+  console.log(req.body.quantity)
+  console.log(data)
   return res.status(status).send({ success: status === 200, response: data, error });
 }
 

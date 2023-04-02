@@ -30,6 +30,7 @@ export interface IconsProps {
 }
 
 export interface Post{
+    cartCreate?:any,
     url:string,
     data?:any,
     cart?:any,

@@ -16,6 +16,7 @@ const addCart =(items)=>{
       
 }
 
+
 const cartUpdateItemsMutation =(id, lines)=>{
   return `mutation {
     cartLinesUpdate(cartId: "gid:\/\/shopify\/Cart\/${id}", lines: ${lines}) {
@@ -24,6 +25,7 @@ const cartUpdateItemsMutation =(id, lines)=>{
         createdAt
         updatedAt
         checkoutUrl
+        
       }
       userErrors {
         field
@@ -34,9 +36,9 @@ const cartUpdateItemsMutation =(id, lines)=>{
 }
 
 
-const cartAddItemsMutation = (id, lines)=>{
+const cartAddItemsMutation = (lines)=>{
   return `mutation {
-    cartLinesAdd(cartId: "gid:\/\/shopify\/Cart\/${id}", lines: ${lines}) {
+    cartLinesAdd(${lines}) {
       cart {
         id
         createdAt

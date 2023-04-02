@@ -9,6 +9,7 @@ export const shopifyApi = createApi({
   endpoints: (builder)=>({
     getShopify: builder.query({
       query:(route)=>`${route}`,
+      providesTags: ['Post'],
     }),
 
     postShopify: builder.mutation<Post, Partial<Post> & Pick<Post, 'url'>>({
@@ -18,7 +19,7 @@ export const shopifyApi = createApi({
         body: body,
       }),
       // Pick out data and prevent nested properties in a hook or selector
-      transformResponse: (response: { data: Post }, meta, arg) => response.data,
+      transformResponse: (response: { response: Post }, meta, arg) => response.response,
       // Pick out errors and prevent nested properties in a hook or selector
       transformErrorResponse: (
         response: { status: string | number },

@@ -1,4 +1,4 @@
-import { usePostShopifyMutation } from '@/slice/shopifySlice'
+import { useGetShopifyQuery, usePostShopifyMutation } from '@/slice/shopifySlice'
 import { ProductDetailsType } from '@/types'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -9,32 +9,37 @@ import {ProductDetailsPrice} from './Prices'
 
 export const ProductDetails=({id, variants, amount, currency, description, title }:ProductDetailsType)=>{
 
-    const [quantity, setQuantity] = useState<String>("1")
+    const [quantity, setQuantity] = useState<String | number>(1)
+    const [cartId, setCartId] = useState<string | null>(null)
+    const [variantId, setVariantid] = useState<string | null>(variants.nodes[0].id)
+
+    useEffect(() => {
+        setCartId(localStorage.getItem("cart"))
+    }, [])
 
     const [postShopify, {isLoading: loading, data, isError, isSuccess}] = usePostShopifyMutation()
-
-    let cartId: string | null = null
-    if ((typeof window !== 'undefined')){
-        cartId = localStorage.getItem("cart")
-    }
+    
     const handleAddToCart = ()=>{
-        const body = {
-            
-            quantity:quantity,
-            variant_id:"gid://shopify/ProductVariant/44107811389749"
+        if(variantId){
+            const body = {
+                id: cartId,
+                quantity:quantity,
+                variant_id:variantId,
+            }
+            postShopify({"url":"/cart/add", body })
         }
-        postShopify({"url":"/cart/add", body })
-       
     }
     
-
     useEffect(() => {
         if(isSuccess){
             toast.success(`Added to cart: ${title}`)
-            localStorage.setItem("cart", data?.cart?.id)
+            localStorage.setItem("cart", data?.cartCreate?.cart?.id)
         }
-    }, [data?.cart?.updatedAt])
+        setCartId(localStorage.getItem("cart"))
+    }, [data?.cartCreate?.cart?.updatedAt])
+
     
+    console.log(variantId)
     return <>
     <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{title}</h2>
     <p className="text-gray-500 text-sm">By <a href="#" className="text-indigo-600 hover:underline">ABC Company</a></p>
