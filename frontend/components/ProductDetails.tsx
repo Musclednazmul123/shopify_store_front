@@ -11,7 +11,7 @@ export const ProductDetails=({id, variants, amount, currency, description, title
 
     const [quantity, setQuantity] = useState<String | number>(1)
     const [cartId, setCartId] = useState<string | null>(null)
-    const [variantId, setVariantid] = useState<string | null>(variants.nodes[0].id)
+    const [variantId, setVariantid] = useState<string | null>(variants?.nodes[0]?.id)
 
     useEffect(() => {
         setCartId(localStorage.getItem("cart"))

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const ImageWithThumb=({images}:any)=>{
 
-    const [active, setActive] = useState(images[0].node.transformedSrc)
+    const [active, setActive] = useState(images[0]?.node?.transformedSrc)
 
     const sliderSettings={
         dots: false,
@@ -41,12 +41,12 @@ export const ImageWithThumb=({images}:any)=>{
     return<div >
         <div className='max-w-[600px]'>
             <div className='mb-2 max-w-full'>
-              <Image alt='Mountains' width={1080} height={1920} src={active} />
+              <Image alt='Mountains' width={1080} height={1920} src={active?active:"/placeholder.webp"} />
             </div>
             <NextSlider settings={sliderSettings}>
                 {images.map((image:any, index:number)=>
-                    <div onClick={()=>setActive(image.node.transformedSrc)} key={`product-page-image-component-${index}`} className='max-w-[600px] h-auto p-1 relative cursor-pointer'>
-                        <Image alt='Mountains' width={1080} height={1920} src={image.node.transformedSrc} />
+                    <div onClick={()=>setActive(image?.node?.transformedSrc)} key={`product-page-image-component-${index}`} className='max-w-[600px] h-auto p-1 relative cursor-pointer'>
+                        <Image alt='Mountains' width={1080} height={1920} src={image?.node?.transformedSrc ? image?.node?.transformedSrc : "/placeholder.webp"} />
                     </div>
                 )}
             </NextSlider>  

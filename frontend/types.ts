@@ -61,3 +61,4 @@ export interface ProductDetailsType{
     title:String,
     variants?: any
 }
+
