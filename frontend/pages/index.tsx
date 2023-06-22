@@ -7,13 +7,18 @@ import { useGetShopifyQuery } from '@/slice/shopifySlice'
 import { useState } from 'react'
 import {Error} from '@/components/Error'
 import { Products } from '@/types'
+import {homePageHeroData} from "@/data/heros"
 
 export default function Home() {
   const [page, setPage]=useState<string | null>(null)
     const {data, error, isLoading} = useGetShopifyQuery(`product?page=${page}`)
+    const {title, description, img, url}=homePageHeroData
 
     if (isLoading){
-       return <Loading />
+       return (<Layout title='Home'>
+       <Hero title={title} description={description} img={img} url={url} />
+       <Loading />
+     </Layout>)
     } 
 
     if(error || data.error){
@@ -32,9 +37,10 @@ export default function Home() {
             setPage(`before:"${products.edges[0].cursor}"`)
         }
     }
+  
   return (
     <Layout title='Home'>
-      <Hero />
+      <Hero title={title} description={description} img={img} url={url} />
       <AllProducts products={products} next={()=>nextPage()} previous={()=>previousPage()} />
     </Layout>
   )

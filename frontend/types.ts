@@ -62,3 +62,9 @@ export interface ProductDetailsType{
     variants?: any
 }
 
+export interface HeroType{
+    title?: String,
+    description?:String, 
+    img?:String, 
+    url?:String
+}
