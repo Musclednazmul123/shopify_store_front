@@ -39,6 +39,13 @@ const oneProduct = (handle, queryOption)=>{
     product(handle:${handle}) {
       id
       title
+      images(first: 10) {
+        edges {
+          node {
+            transformedSrc(preferredContentType: WEBP)
+          }
+        }
+      }
       variants(first: 250) {
         nodes {
           id
@@ -52,35 +59,54 @@ const oneProduct = (handle, queryOption)=>{
   }`
 }
 
-const cart = (id, total, cursor, page)=>{
-  let pageoption = ""
-  let option='first'
-  if (cursor){
-    if (page=='next'){
-      option='first'
-      page = "after"
-    } else if(page=='previous'){
-      option='last'
-      page = "before"
-    } else{
-      return null
-    }
-    pageoption =  `${page}:"${cursor}"`
-  }
+const cart = (id, queryOption)=>{
   return `{
-    cart(id: "gid:\/\/shopify\/Cart\/${id}" ) {
+    cart(id:${id} ) {
       id
       createdAt
       updatedAt
-      lines(${option}: ${total}, ${pageoption}) {
+      checkoutUrl
+      totalQuantity
+      cost{
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+      lines(${queryOption}) {
         edges {
           cursor
           node {
             id
+            cost{
+              amountPerQuantity{
+                amount
+                currencyCode
+              }
+              totalAmount{
+                amount
+                currencyCode
+              }
+            }
             merchandise {
               ... on ProductVariant {
                 id
-                
+                title
+                product{
+                  title
+                }
               }
             }
             quantity

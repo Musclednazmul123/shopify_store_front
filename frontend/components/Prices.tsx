@@ -1,7 +1,8 @@
 
 interface Props{
     amount: any,
-    currency:any
+    currency:any,
+    money?:boolean
 }
 
 export const ProductDetailsPrice = ({amount, currency }: Props)=>{
@@ -15,9 +16,9 @@ export const ProductDetailsPrice = ({amount, currency }: Props)=>{
     </div>
 }
 
-export const CardPrice=({amount, currency }: Props)=>{
+export const CardPrice=({amount, currency, money }: Props)=>{
     const options = { style: 'currency', currency: currency };
     const numberFormat = new Intl.NumberFormat('en-US', options);
     const parts = numberFormat.formatToParts(1)
-    return <p className="text-sm font-medium text-gray-900">{parts[0].value}{amount}</p>
+    return <p className="text-sm font-medium text-gray-900">{parts[0].value}{amount} {money && currency}</p>
 }

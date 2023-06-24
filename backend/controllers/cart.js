@@ -1,51 +1,79 @@
 const {useAppQuery} = require('../config/storeApi.js')
-const {addCart, cartAddItemsMutation, cartUpdateItemsMutation, cartRemoveItemsMutation} = require('../config/storefrontApiMutation.js')
-const {cart}=require('../config/storefrontApiQuery.js')
+const {addCart, cartAddItemsMutation, cartUpdateItemsMutation, cartRemoveItemsMutation} = require('../graphql/storefrontApiMutation.js')
+const {cart}=require('../graphql/storefrontApiQuery.js')
 
-const getCart = (req, res)=>{
-
-  const id = "acf59e1343657a41d32109c3c29a672e"
-  useAppQuery(cart(id, req.body.limit || 10, req.body.cursor || null, req.body.page || null )).then((data)=>{
-    if(data){
-        return res.send({ok:true, body:data})
-    } else{
-        return res.status(404).send({message:"404 Not found"})
+const getCart = async(req, res)=>{
+  let status = 200;
+  let error = null;
+  let data=null
+  const id = `"gid://shopify/Cart/${req.query.id}"`
+  
+  try {
+    let limit = "first"
+    if(req.query.page !='null' && req.query.page.split(':')[0] == 'before'){
+        limit = "last"
     }
-  }).catch((err)=>{
-      console.log(err)
-      return res.send(err)
-  })
+    let queryOption=`${limit}:20, reverse: true, ${req.query.page !='null' ? req.query.page :""}`
+    data = await useAppQuery(cart(id, queryOption))
+    
+  } catch(e){
+    console.log(`Failed to process products/create: ${e.message}`);
+    status = 500;
+    error = e.message;
+  }
+
+  return res.status(status).send({ success: status === 200, response: data, error });
 }
 
-const addToCart =(req, res)=>{
+const addToCart = async(req, res)=>{
+  let status = 200;
+  let error = null;
+  let data=null
+  const id = req.body.id || null
+  try{
     
     const input = `{
-        lines: [
-          {
-            quantity: ${req.body.quantity},
-            merchandiseId: "gid://shopify/ProductVariant/${req.boy.variant_id}"
-          }
-        ], 
-        attributes: {
-          key: "cart_attribute",
-          value: "This is a cart attribute"
+      lines: [
+        {
+          quantity: ${req.body.quantity*1 || 1},
+          merchandiseId: "${req.body.variant_id}"
         }
+      ]
     }`
-    useAppQuery(addCart(input)).then((data)=>{
-        if(data.cartCreate.cart){
-            return res.send({ok:true, body:data.cartCreate})
-        } else{
-            return res.status(404).send({message:"404 Not found"})
-        }
+    if(id && id != 'null'){
+      const mycart = await useAppQuery(cart(`"${id}"`, "first:1"))
+      if(mycart.cart){
+        const lines = `
+          cartId:"${id}",
+          lines: [
+            {
+              quantity: ${req.body.quantity*1 || 1},
+              merchandiseId: "${req.body.variant_id}"
+            }
+          ]`
+        data = await useAppQuery(cartAddItemsMutation(lines))
         
-    }).catch((err)=>{
-        console.log(err)
-        return res.send(err)
-    })
+      } else{
+        data = await useAppQuery(addCart(input))
+      }
+    } else{
+      data = await useAppQuery(addCart(input))
+    }
+    
+    
+  }catch(e){
+    console.log(`Failed to process products/create: ${e.message}`);
+    status = 500;
+    error = e.message;
+  }
+  console.log(req.body.quantity)
+  console.log(data)
+  return res.status(status).send({ success: status === 200, response: data, error });
 }
 
 
 const cartAddItems=(req, res)=>{
+  console.log(req.body.cart_id)
   const id = "acf59e1343657a41d32109c3c29a672e"
   const lines = `[
       {
