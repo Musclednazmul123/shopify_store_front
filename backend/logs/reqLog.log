@@ -5245,3 +5245,9 @@
 20230630	07:53:40	4827b191-e1ec-4651-b828-24a4dff4e7ed	GET	/product?page=null	http://localhost:3000
 20230630	07:53:40	21261669-8917-4575-97e0-629bc1ae2ec5	GET	/cart?id=c1-db89af20e5425a60cd54e814a072c9b9&page=null	http://localhost:3000
 20230630	07:53:40	c152d1f2-ae15-474a-8948-d93c15414280	GET	/cart?id=null&page=null	http://localhost:3000
+20230630	07:55:30	b2bef99c-14fe-472c-8bc3-2e7ce0bb7eaa	GET	/cart?id=null&page=null	http://localhost:3000
+20230630	07:57:49	eb15b08b-c7b7-4bb7-8775-31961eec148f	GET	/cart?id=null&page=null	http://localhost:3000
+20230630	07:57:49	f629d0dc-b18d-4df1-8885-33a53bd4e540	GET	/cart?id=c1-db89af20e5425a60cd54e814a072c9b9&page=null	http://localhost:3000
+20230630	07:58:18	946253da-558e-4450-884f-e4417c460c68	GET	/cart?id=null&page=null	http://localhost:3000
+20230630	07:58:18	625a3127-f9b1-4e8b-94b7-7ad30bcd5172	GET	/cart?id=c1-db89af20e5425a60cd54e814a072c9b9&page=null	http://localhost:3000
+20230630	07:59:17	dda950ef-ba83-47c3-90d9-c2fd87b6bcff	GET	/product?page=null	http://localhost:3000
