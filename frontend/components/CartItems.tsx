@@ -1,9 +1,10 @@
 import { useGetShopifyQuery } from "@/slice/shopifySlice"
 import Link from "next/link"
-import { Key, useEffect, useState } from "react"
+import { useState } from "react"
 import { Error } from "./Error"
 import { Loading } from "./Loadings"
 import { CardPrice } from "./Prices"
+import Image from "next/image"
 
 interface CartItems{
     id:string | null
@@ -47,8 +48,8 @@ export const CartItems =({id}:CartItems)=>{
         return <>Cart is Empty</>
     }
 
-    console.log("data")
-    console.log(data)
+    // console.log("data")
+    // console.log(data)
     let updatedAt = new Date(items.updatedAt)
     return <div>
 
@@ -71,12 +72,12 @@ export const CartItems =({id}:CartItems)=>{
                         <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                         <div className="flex w-2/5">
                             <div className="w-20">
-                            <img className="h-24" src="https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z" alt="" />
+                            <Image className="h-24" src="https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z" width={1080} height={1920} alt="" />
                             </div>
                             <div className="flex flex-col justify-between ml-4 flex-grow">
                             <span className="font-bold text-sm">{item.node?.merchandise?.product.title}</span>
                             <span className="text-red-500 text-xs">Variant: {item.node?.merchandise?.title}</span>
-                            <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                            <Link href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</Link>
                             </div>
                         </div>
                         <div className="flex justify-center w-1/5">

@@ -1,13 +1,14 @@
 import {MenuItems} from '@/types'
 import { useRouter } from 'next/router';
 import {extra_menus} from '../data/menus'
+import Link from 'next/link';
 
 export const ExtraMenuItem=({active, text, url}:MenuItems)=>{
 
     return <li className='p-0'>
         {active?
-        <a href={url} className="block py-5 px-2 rounded text-yellow-500 lg:bg-transparent" aria-current="page">{text}</a>:
-        <a href={url} className="block py-5 px-2 border-white   lg:hover:text-yellow-500 dark:text-white">{text}</a>
+        <Link href={url} className="block py-5 px-2 rounded text-yellow-500 lg:bg-transparent" aria-current="page">{text}</Link>:
+        <Link href={url} className="block py-5 px-2 border-white   lg:hover:text-yellow-500 dark:text-white">{text}</Link>
         }
     </li>
 }

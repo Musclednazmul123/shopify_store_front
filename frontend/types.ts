@@ -20,7 +20,8 @@ export interface MenuItems{
 export interface ButtonProps {
     title?: string,
     action?: () => void,
-    children?:ReactNode
+    children?:ReactNode,
+    classes?:String
 }
 
 export interface IconsProps {
@@ -64,7 +65,18 @@ export interface ProductDetailsType{
 
 export interface HeroType{
     title?: String,
+    subtitle?: String,
     description?:String, 
     img?:String, 
-    url?:String
+    url?:String,
+    video?:String,
+    btn?:String
+}
+
+export interface IconCardType{
+    iconsrc?: String, 
+    title: String, 
+    description?: String, 
+    scheme?:String,
+    titleTop?:Boolean
 }
