@@ -16,11 +16,11 @@ export const Header =()=>{
     
     return <div>
         <header>
-            <nav className="bg-gray-200 border-gray-200 px-4 lg:px-6 py-2.5 ">
-                <div className="flex items-center justify-between mx-auto max-w-full w-full">
+            <nav className="bg-gray-200 border-gray-200 px-0 py-2.5 ">
+                <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 w-full">
                     <Menus />
                     <div className="flex items-center justify-center w-1/3">
-                        <SiteLogo source='https://flowbite.com/docs/images/logo.svg' />
+                        <SiteLogo source='https://cdn.shopify.com/s/files/1/0707/5302/6343/files/logo_3a67bf5a-b8d1-4b4c-8ce6-52010659c268.png?v=1687426827' />
                     </div>
                     <div className="flex justify-end w-1/3">
                         <Link href="/cart">

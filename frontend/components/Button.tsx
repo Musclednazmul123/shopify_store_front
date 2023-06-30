@@ -2,10 +2,10 @@
 import {ButtonProps} from '@/types'
 import { BurgerIcon } from './Icons'
 
-export const Button =({title, action, children}:ButtonProps)=>{
+export const Button =({title, action, children, classes}:ButtonProps)=>{
 
     return <>
-        <button onClick={action} >{children? children: title}</button>
+        <button className={String(classes)} onClick={action} >{children? children: title}</button>
     
     </>
 }

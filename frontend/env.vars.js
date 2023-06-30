@@ -1,0 +1,1 @@
+export const NEXT_PUBLIC_STORE_API = process.env.NEXT_PUBLIC_STORE_API || 'http://localhost:5000'

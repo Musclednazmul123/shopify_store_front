@@ -1,10 +1,12 @@
 
 import { createApi,  fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import type { Post } from '@/types'
+import { NEXT_PUBLIC_STORE_API } from '../env.vars.js'
+
 
 export const shopifyApi = createApi({
   reducerPath: "productsApi",
-  baseQuery: fetchBaseQuery({baseUrl: process.env.NEXT_PUBLIC_STORE_API || "localhost:5000"}),
+  baseQuery: fetchBaseQuery({baseUrl: NEXT_PUBLIC_STORE_API}),
   tagTypes: ['Post'],
   endpoints: (builder)=>({
     getShopify: builder.query({

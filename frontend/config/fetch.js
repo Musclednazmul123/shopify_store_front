@@ -1,8 +1,10 @@
 import axios from "axios";
+import { NEXT_PUBLIC_STORE_API } from '../env.vars.js'
 
-const baseurl = process.env.NEXT_PUBLIC_STORE_API || "localhost:5000"
+const baseurl = NEXT_PUBLIC_STORE_API
 
 export const fetchdata = async(url, query)=>{
+
     const type = typeof(query)
     if (type != 'object') {
         return {message:"query must be a object"}

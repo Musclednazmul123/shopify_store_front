@@ -14,7 +14,10 @@ export const ProductDetails=({id, variants, amount, currency, description, title
     const [variantId, setVariantid] = useState<string | null>(variants?.nodes[0]?.id)
 
     useEffect(() => {
-        setCartId(localStorage.getItem("cart"))
+        let maincart = localStorage.getItem("cart")
+        if(maincart){
+            setCartId(maincart)
+        }
     }, [])
 
     const [postShopify, {isLoading: loading, data, isError, isSuccess}] = usePostShopifyMutation()
@@ -36,10 +39,8 @@ export const ProductDetails=({id, variants, amount, currency, description, title
             localStorage.setItem("cart", data?.cartCreate?.cart?.id)
         }
         setCartId(localStorage.getItem("cart"))
-    }, [data?.cartCreate?.cart?.updatedAt])
+    }, [])
 
-    
-    console.log(variantId)
     return <>
     <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{title}</h2>
     <p className="text-gray-500 text-sm">By <a href="#" className="text-indigo-600 hover:underline">ABC Company</a></p>

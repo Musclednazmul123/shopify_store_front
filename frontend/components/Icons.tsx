@@ -1,6 +1,7 @@
 import { useGetShopifyQuery } from '@/slice/shopifySlice'
 import {IconsProps} from '@/types'
 import { Loading } from './Loadings'
+import Image from 'next/image'
 
 interface IconCart{
     id?:string | null
@@ -60,4 +61,57 @@ export const Paginate=({next, is_active}:IconsProps)=>{
         </svg>
         }
     </>
+}
+
+
+const payment=[
+    {
+        "title":"visa",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/image_20.png",
+    },
+    {
+        "title":"mastercard",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/image_19.png",
+    },
+    {
+        "title":"paypal",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/image_18.png",
+    }
+]
+
+const social=[
+    {
+        "title":"instagram",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/ri_instagram-fill.svg",
+    },
+    {
+        "title":"linkedin",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/mdi_linkedin.svg",
+    },
+    {
+        "title":"facebook",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/ic_twotone-facebook.svg",
+    },
+    {
+        "title":"twitter",
+        "icon":"https://cdn.shopify.com/s/files/1/0707/5302/6343/files/radix-icons_twitter-logo.svg",
+    }
+]
+export const SocialIcons=()=>{
+   return<>
+   <div className='flex justify-center p-10 gap-0'>
+    <div className='flex gap-10 items-center px-5 border-r-2'>
+        {payment?.map((item, index)=><div key={`${item.title}-${index}`}>
+                <Image width={50}  height={50} src={String(item.icon)} alt={String(item.title)} />
+            </div>
+        )}
+    </div>
+    <div className='flex items-center gap-10 px-5'>
+        {social?.map((item, index)=><div key={`${item.title}-${index}`}>
+                <Image width={40}  height={30} src={String(item.icon)} alt={String(item.title)} />
+            </div>
+        )}
+    </div>
+   </div>
+   </>
 }

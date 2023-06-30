@@ -1,12 +1,14 @@
 import {MenuItems} from '@/types'
 import { useRouter } from 'next/router';
+import { menus } from '@/data/menus';
+import Link from 'next/link';
 
 export const MenuItem=({active, text, url}:MenuItems)=>{
 
-    return <li>
+    return <li className='p-0'>
         {active?
-         <a href={url} className="block py-5 px-2 rounded text-yellow-500 lg:bg-transparent lg:p-5 " aria-current="page">{text}</a>:
-         <a href={url} className="block py-5 px-2  lg:hover:text-yellow-500 text-gray-800">{text}</a>
+         <Link href={url} className="block py-5 px-2 rounded text-yellow-500 lg:bg-transparent" aria-current="page">{text}</Link>:
+         <Link href={url} className="block py-5 px-2  lg:hover:text-yellow-500 text-gray-800">{text}</Link>
         }
     </li>
 }
@@ -16,12 +18,7 @@ export const MenuItem=({active, text, url}:MenuItems)=>{
 export const Menus = () => {
   const router = useRouter();
 
-  const menuItems = [
-    { text: 'Home', url: '/' },
-    { text: 'Shop', url: '/shop' },
-    { text: 'Contact', url: '/contact' },
-    { text: 'About Us', url: '/about' },
-  ];
+  const menuItems = menus;
 
   const isActive = (url: string) => {
     return router.pathname === url;
